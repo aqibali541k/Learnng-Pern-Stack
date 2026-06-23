@@ -1,9 +1,11 @@
 import { Input, message } from 'antd'
 import axios from 'axios'
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 let initialState = { name: "", email: "", phone: "", age: "", password: "", profilePic: "" }
 const Register = () => {
     const [state, setState] = useState(initialState)
+    const navigate = useNavigate()
     const handleChange = (e) => {
         setState({ ...state, [e.target.name]: e.target.value })
     }
@@ -33,7 +35,7 @@ const Register = () => {
     }
     const style = "w-full my-2 mb-2  bg-white rounded-lg border border-gray-200 flex justify-center items-center p-1 "
     return (
-        <div className='max-w-xl px-8 mt-4 py-12 bg-white shadow-lg rounded-2xl p-4 mx-auto flex flex-col justify-center items-center'>
+        <div className='max-w-lg px-8 mt-4 py-12 bg-white shadow-lg rounded-2xl p-4 mx-auto flex flex-col justify-center items-center'>
             <h1 className='text-2xl w-full font-bold text-center'>Register</h1>
             <label className='w-full text-left'>Name</label>
             <input className={style} type="text" name='name' placeholder='Enter your Name' onChange={handleChange} />
@@ -48,6 +50,7 @@ const Register = () => {
             <label className='w-full text-left'>ProfilePic</label>
             <input className={style} type="text" name="profilePic" placeholder='Enter your ProfilePic' onChange={handleChange} />
             <button onClick={handleSubmit} className='w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600'>Register</button>
+            <p onClick={() => navigate("/auth/login")} className=' text-black cursor-pointer'>Already have an account ? <span className='font-bold text-blue-600'>Login</span></p>
         </div>
     )
 }
